@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bot de cotizaciones</title>
+    <style>
+        :root {
+            --rojo: rgb(218, 41, 28);
+            --gris: rgb(30, 30, 30);
+            --negro: #000000;
+            --blanco: #ffffff;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--negro);
+            color: var(--blanco);
+            overflow-x: hidden;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+        header {
+            background-color: var(--gris);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(30, 30, 30, 0.9);
+        }
+      
+        main {
+            padding-top: 100px;
+        }
+        h1 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out;
+        }
+        .chat-container {
+            background-color: var(--gris);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(218, 41, 28, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+        .chat-header {
+            background-color: var(--rojo);
+            color: var(--blanco);
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .chat-input {
+            display: flex;
+            padding: 20px;
+            background-color: var(--negro);
+        }
+        #user-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 1em;
+        }
+        #send-btn {
+            background-color: var(--rojo);
+            color: var(--blanco);
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 0 5px 5px 0;
+        }
+        #send-btn:hover {
+            background-color: rgb(180, 34, 23);
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .feature {
+            text-align: center;
+            margin: 20px;
+            padding: 20px;
+            background-color: var(--gris);
+            border-radius: 10px;
+            width: 200px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(218, 41, 28, 0.2);
+        }
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: var(--rojo);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="logo"><img src="./sergio/sergio/logo.png" style="width: 120px;"></div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h1>Bot de cotizaciones</h1>
+            
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2024/10/28/15/20241028154619-EVG5CV12.js"></script>
+        
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">💼</div>
+                    <h3>Cotizaciones Rápidas</h3>
+                    <p>Obtén cotizaciones al instante para todos nuestros servicios.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🤖</div>
+                    <h3>IA Avanzada</h3>
+                    <p>Nuestro bot utiliza inteligencia artificial para respuestas precisas.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Seguro y Confiable</h3>
+                    <p>Tus datos están protegidos con la más alta seguridad.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Efecto de scroll en el header
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Funcionalidad básica del chat (para demostración)
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        function addMessage(message, isUser = false) {
+            const messageElement = document.createElement('div');
+            messageElement.style.padding = '10px';
+            messageElement.style.margin = '10px';
+            messageElement.style.borderRadius = '5px';
+            messageElement.style.maxWidth = '70%';
+            messageElement.style.animation = 'fadeIn 0.5s ease-out';
+
+            if (isUser) {
+                messageElement.style.backgroundColor = 'rgb(218, 41, 28)';
+                messageElement.style.color = '#ffffff';
+                messageElement.style.marginLeft = 'auto';
+            } else {
+                messageElement.style.backgroundColor = '#ffffff';
+                messageElement.style.color = '#000000';
+            }
+
+            messageElement.textContent = message;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        sendBtn.addEventListener('click', () => {
+            const message = userInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                userInput.value = '';
+                // Simular respuesta del bot (reemplazar con la lógica real del bot)
+                setTimeout(() => {
+                    addMessage("Gracias por tu mensaje. Un representante se pondrá en contacto contigo pronto para proporcionarte una cotización detallada.");
+                }, 1000);
+            }
+        });
+
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendBtn.click();
+            }
+        });
+
+        // Mensaje inicial del bot
+        addMessage("¡Hola! Soy el asistente virtual de Zaires. ¿En qué puedo ayudarte hoy?");
+    </script>
+</body>
+</html>
