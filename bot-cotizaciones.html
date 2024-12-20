@@ -3,122 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bot de cotizaciones</title>
+    <title>IMSA - Cotizaciones Inteligentes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --rojo: rgb(218, 41, 28);
             --gris: rgb(30, 30, 30);
             --negro: #000000;
             --blanco: #ffffff;
+            --gris-claro: #f4f4f4;
         }
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: var(--negro);
-            color: var(--blanco);
-            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--blanco);
+            color: var(--gris);
+            line-height: 1.6;
         }
         .container {
-            width: 80%;
-            margin: 0 auto;
+            width: 90%;
             max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         header {
-            background-color: var(--gris);
-            padding: 20px 0;
+            background-color: var(--negro);
+            padding: 15px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             transition: all 0.3s ease;
         }
-        header.scrolled {
-            padding: 10px 0;
-            background-color: rgba(30, 30, 30, 0.9);
+        .logo img {
+            width: 10vw;
+            height: auto;
+            transition: all 0.3s ease;
         }
-      
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 30px;
+        }
+        .nav-links a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--rojo);
+        }
         main {
-            padding-top: 100px;
+            padding-top: 80px;
+        }
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--blanco);
+        }
+        .hero-content {
+            max-width: 800px;
         }
         h1 {
-            font-size: 3em;
-            text-align: center;
-            margin-bottom: 50px;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             animation: fadeInUp 1s ease-out;
         }
-        .chat-container {
-            background-color: var(--gris);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(218, 41, 28, 0.3);
-            animation: fadeIn 1s ease-out;
-        }
-        .chat-header {
-            background-color: var(--rojo);
-            color: var(--blanco);
-            padding: 20px;
-            text-align: center;
+        .hero p {
             font-size: 1.2em;
-            font-weight: bold;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.2s;
+            animation-fill-mode: both;
         }
-        .chat-messages {
-            height: 400px;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        .chat-input {
-            display: flex;
-            padding: 20px;
-            background-color: var(--negro);
-        }
-        #user-input {
-            flex-grow: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 5px 0 0 5px;
-            font-size: 1em;
-        }
-        #send-btn {
+        .btn {
+            display: inline-block;
             background-color: var(--rojo);
             color: var(--blanco);
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            border-radius: 0 5px 5px 0;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        #send-btn:hover {
-            background-color: rgb(180, 34, 23);
+        .btn:hover {
+            background-color: #c62828;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(198, 40, 40, 0.3);
         }
         .features {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 50px;
-            flex-wrap: wrap;
+            padding: 80px 0;
+            background-color: var(--gris-claro);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
         }
         .feature {
-            text-align: center;
-            margin: 20px;
-            padding: 20px;
-            background-color: var(--gris);
+            background-color: var(--blanco);
             border-radius: 10px;
-            width: 200px;
+            padding: 30px;
+            text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         .feature:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(218, 41, 28, 0.2);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
         .feature-icon {
             font-size: 3em;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             color: var(--rojo);
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .feature h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: var(--negro);
+        }
+        .how-it-works {
+            padding: 80px 0;
+        }
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+        .step {
+            flex-basis: 30%;
+            text-align: center;
+        }
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: var(--rojo);
+            color: var(--blanco);
+            border-radius: 50%;
+            font-size: 1.5em;
+            line-height: 50px;
+            margin-bottom: 20px;
+        }
+        .testimonials {
+            background-color: var(--gris);
+            color: var(--blanco);
+            padding: 80px 0;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .testimonial {
+            background-color: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .testimonial-author {
+            font-weight: 600;
+        }
+        footer {
+            background-color: var(--negro);
+            color: var(--blanco);
+            padding: 40px 0;
+            text-align: center;
+        }
+        .social-links {
+            margin-top: 20px;
+        }
+        .social-links a {
+            color: var(--blanco);
+            font-size: 1.5em;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--rojo);
+        }
+        #botpress-webchat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
         }
         @keyframes fadeInUp {
             from {
@@ -130,18 +221,18 @@
                 transform: translateY(0);
             }
         }
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
             }
-            50% {
-                transform: scale(1.05);
+            h1 {
+                font-size: 2.5em;
             }
-            100% {
-                transform: scale(1);
+            .steps {
+                flex-direction: column;
+            }
+            .step {
+                margin-bottom: 30px;
             }
         }
     </style>
@@ -149,95 +240,152 @@
 <body>
     <header id="header">
         <div class="container">
-            <div class="logo"><img src="./sergio/sergio/logo.png" style="width: 120px;"></div>
+            <nav>
+                <div class="logo">
+                    <img src="./sergio/sergio/logo.png" alt="IMSA Logo">
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Características</a></li>
+                    <li><a href="#how-it-works">Cómo Funciona</a></li>
+                    <li><a href="#testimonials">Testimonios</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
     <main>
-        <div class="container">
-            <h1>Bot de cotizaciones</h1>
-            
-    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2024/10/28/15/20241028154619-EVG5CV12.js"></script>
-        
-
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">💼</div>
-                    <h3>Cotizaciones Rápidas</h3>
-                    <p>Obtén cotizaciones al instante para todos nuestros servicios.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🤖</div>
-                    <h3>IA Avanzada</h3>
-                    <p>Nuestro bot utiliza inteligencia artificial para respuestas precisas.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Seguro y Confiable</h3>
-                    <p>Tus datos están protegidos con la más alta seguridad.</p>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Cotizaciones Inteligentes al Instante</h1>
+                <p>Obtén cotizaciones precisas y personalizadas para todos nuestros servicios con nuestro asistente virtual impulsado por IA.</p>
+                <a href="#" class="btn" onclick="window.botpressWebChat.sendEvent({ type: 'show' })">IMSA + IA</a>
+            </div>
+        </section>
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Características Destacadas</h2>
+                <div class="features-grid">
+                    <div class="feature">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Cotizaciones Rápidas</h3>
+                        <p>Obtén cotizaciones al instante para todos nuestros servicios, sin esperas ni complicaciones.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🤖</div>
+                        <h3>IA Avanzada</h3>
+                        <p>Nuestro bot utiliza inteligencia artificial de última generación para proporcionar respuestas precisas y personalizadas.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Seguro y Confiable</h3>
+                        <p>Tus datos están protegidos con la más alta seguridad. Tu privacidad es nuestra prioridad.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">📊</div>
+                        <h3>Análisis Detallado</h3>
+                        <p>Recibe un desglose completo de tu cotización con opciones personalizadas según tus necesidades.</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>Cómo Funciona</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Inicia el Chat</h3>
+                        <p>Haz clic en el botón de cotización para abrir nuestro asistente virtual.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Describe tus Necesidades</h3>
+                        <p>Proporciona los detalles de los servicios que necesitas cotizar.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Recibe tu Cotización</h3>
+                        <p>Obtén una cotización detallada y personalizada en segundos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <h2>Lo que Dicen Nuestros Clientes</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <p>"El bot de cotizaciones de IMSA me ahorró horas de trabajo. ¡Increíblemente rápido y preciso!"</p>
+                        <div class="testimonial-author">- María G., Gerente de Proyectos</div>
+                    </div>
+                    <div class="testimonial">
+                        <p>"La facilidad de uso y la precisión de las cotizaciones son impresionantes. Definitivamente recomendado."</p>
+                        <div class="testimonial-author">- Carlos R., Emprendedor</div>
+                    </div>
+                    <div class="testimonial">
+                        <p>"IMSA ha revolucionado la forma en que obtenemos cotizaciones. Es rápido, eficiente y siempre preciso."</p>
+                        <div class="testimonial-author">- Ana L., Directora de Operaciones</div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 IMSA. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
 
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2024/10/28/15/20241028154619-EVG5CV12.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
     <script>
-        // Efecto de scroll en el header
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
             if (window.scrollY > 50) {
-                header.classList.add('scrolled');
+                header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                header.style.padding = '10px 0';
             } else {
-                header.classList.remove('scrolled');
+                header.style.backgroundColor = 'rgba(0, 0, 0, 1)';
+                header.style.padding = '15px 0';
             }
         });
 
-        // Funcionalidad básica del chat (para demostración)
-        const chatMessages = document.getElementById('chat-messages');
-        const userInput = document.getElementById('user-input');
-        const sendBtn = document.getElementById('send-btn');
-
-        function addMessage(message, isUser = false) {
-            const messageElement = document.createElement('div');
-            messageElement.style.padding = '10px';
-            messageElement.style.margin = '10px';
-            messageElement.style.borderRadius = '5px';
-            messageElement.style.maxWidth = '70%';
-            messageElement.style.animation = 'fadeIn 0.5s ease-out';
-
-            if (isUser) {
-                messageElement.style.backgroundColor = 'rgb(218, 41, 28)';
-                messageElement.style.color = '#ffffff';
-                messageElement.style.marginLeft = 'auto';
-            } else {
-                messageElement.style.backgroundColor = '#ffffff';
-                messageElement.style.color = '#000000';
-            }
-
-            messageElement.textContent = message;
-            chatMessages.appendChild(messageElement);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        sendBtn.addEventListener('click', () => {
-            const message = userInput.value.trim();
-            if (message) {
-                addMessage(message, true);
-                userInput.value = '';
-                // Simular respuesta del bot (reemplazar con la lógica real del bot)
-                setTimeout(() => {
-                    addMessage("Gracias por tu mensaje. Un representante se pondrá en contacto contigo pronto para proporcionarte una cotización detallada.");
-                }, 1000);
-            }
+        window.addEventListener('load', function() {
+            window.botpressWebChat.init({
+                composerPlaceholder: "Escribe tu mensaje aquí...",
+                botConversationDescription: "Bot de Cotizaciones IMSA",
+                botId: "EVG5CV12",
+                hostUrl: "https://cdn.botpress.cloud/webchat/v2.2",
+                messagingUrl: "https://messaging.botpress.cloud",
+                clientId: "EVG5CV12",
+                webhookId: "2024/10/28/15/20241028154619-EVG5CV12",
+                botName: "Asistente de Cotizaciones IMSA",
+                avatarUrl: "./sergio/sergio/logo.png",
+                phoneNumber: "+5491112345678",
+                lazySocket: true,
+                themeName: "prism",
+                frontendVersion: "v2.2",
+                useSessionStorage: true,
+                theme: "dark",
+                themeColor: "#DA291C"
+            });
         });
 
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendBtn.click();
-            }
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
-
-        // Mensaje inicial del bot
-        addMessage("¡Hola! Soy el asistente virtual de Zaires. ¿En qué puedo ayudarte hoy?");
     </script>
 </body>
 </html>

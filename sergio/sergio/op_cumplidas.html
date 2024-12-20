@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Órdenes Produciéndose</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'imsa-red': '#DA291C',
+                        'imsa-orange': '#1E1E1E',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-imsa-red text-white shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="./logo.png" alt="IMSA Logo" class="mr-3 h-16">
+            </div>
+            <h2 class="text-xl">Tablero de Producción</h2>
+        </div>
+    </header>
+
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-2 flex space-x-4">
+            <a href="op_produciendose.html" class="text-gray-600 font-medium hover:underline ">Órdenes Produciéndose</a>
+            <a href="op_cumplidas.html" class="text-imsa-red font-medium hover:underline">Órdenes Producidas</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-imsa-orange">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-700">Órdenes cumplidas</h3>
+                    <i class="fas fa-industry text-imsa-orange"></i>
+                </div>
+                <p class="text-3xl font-bold text-imsa-red">12</p>
+                <p class="text-sm text-gray-500">+2 desde la semana pasada</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-imsa-orange">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-700">Órdenes Pendientes</h3>
+                    <i class="fas fa-clock text-imsa-orange"></i>
+                </div>
+                <p class="text-3xl font-bold text-imsa-red">4</p>
+                <p class="text-sm text-gray-500">-2 desde la semana pasada</p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-6 bg-imsa-red text-white">
+                <h2 class="text-2xl font-bold">Planificación de Producción</h2>
+                <p class="text-sm">Órdenes de producción activas y su estado actual</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-200">
+                        <tr>
+                            <th class="p-3">Recurso</th>
+                            <th class="p-3">Artículo</th>
+                            <th class="p-3">OP GCWin</th>
+                            <th class="p-3">OP Logic</th>
+                            <th class="p-3">Fecha de inicio de la OP</th>
+                            <th class="p-3">Fecha de fin de la OP</th>
+                            <th class="p-3">Fecha de Entrega de la NV</th>
+                            <th class="p-3">Dias de atraso?</th>
+                            <th class="p-3">Nota de venta entregada?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b hover:bg-gray-100">
+                            <td class="p-3 font-medium">201</td>
+                            <td class="p-3">M4B1018550NBVINC</td>
+                            <td class="p-3">197447</td>
+                            <td class="p-3">OP56429101</td>
+                            <td class="p-3">20/01/2019</td>
+                            <td class="p-3">01/02/2019</td>
+                            <td class="p-3">01/02/2019</td>
+                            <td class="p-3 text-red-600">10</td>
+                            <td class="p-3"><span class="px-2 py-1 bg-green-200 text-green-800 rounded-full text-xs">Si</span></td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-100">
+                            <td class="p-3 font-medium">201</td>
+                            <td class="p-3">M4B1018550NBVINC</td>
+                            <td class="p-3">197447</td>
+                            <td class="p-3">OP56429101</td>
+                            <td class="p-3">01/02/2019</td>
+                            <td class="p-3">01/02/2019</td>
+                            <td class="p-3">25/01/2019</td>
+                            <td class="p-3 text-yellow-600">5</td>
+                            <td class="p-3"><span class="px-2 py-1 bg-red-200 text-red-800 rounded-full text-xs">No</span></td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-100">
+                            <td class="p-3 font-medium">201</td>
+                            <td class="p-3">M4B1018550NBVINC</td>
+                            <td class="p-3">197447</td>
+                            <td class="p-3">OP56429101</td>
+                            <td class="p-3">01/02/2019</td>
+                            <td class="p-3">01/02/2019</td>
+                            <td class="p-3">01/02/2019</td>
+                            <td class="p-3 text-green-600">0</td>
+                            <td class="p-3"><span class="px-2 py-1 bg-red-200 text-red-800 rounded-full text-xs">No</span></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
